@@ -17,16 +17,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Pattern;
 
 /**
  * Created by yuank on 2017/10/21.
  */
 public class Main {
     public static void main(String[] args) throws Exception {
+        if (args.length < 2) {
+            System.out.println("没有传递参数。用法：java -jar xxx.jar 源代码位置 包注释源代码位置");
+            return;
+        }
+        String sourceDir = args[0];
+        String packageDescriptionDir = args[1];
         long start = System.currentTimeMillis();
-        List<File> files = Tools.listFiles("H:\\git\\Chinese_BukkitAPI\\BukkitApi");
-        List<File> packages = Tools.listFiles("H:\\git\\Chinese_BukkitAPI\\javadoc");
+        List<File> files = Tools.listFiles(sourceDir);
+        List<File> packages = Tools.listFiles(packageDescriptionDir);
         HashMap<String, String> packageDescriptions = new HashMap<>();
         for (File file : packages) {
             String fileType = file.getName().substring(file.getName().lastIndexOf(".") + 1, file.getName().length());
