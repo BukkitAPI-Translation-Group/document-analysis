@@ -12,16 +12,6 @@ import java.util.List;
  * Created by yuank on 2017/10/21.
  */
 public class Tools {
-    public static void main(String[] args) throws Exception {
-        long startTime = System.currentTimeMillis();
-        File f = new File("H:\\Bukkit\\java\\org\\bukkit");
-        List<File> list = listFiles(f);
-        System.out.println(list.size());
-        System.out.println(list);
-        long endTime = System.currentTimeMillis();
-        System.out.println("程序运行时间： " + (endTime - startTime) + "ms");
-
-    }
 
     public static List<File> listFiles(File file) {
         return listFiles(file.getAbsolutePath());
