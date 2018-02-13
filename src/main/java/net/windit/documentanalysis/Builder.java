@@ -30,7 +30,11 @@ public class Builder {
     private String packageInfoSourcePath;
     private String saveTo;
 
+<<<<<<< HEAD
     public Builder(String sourcePath, String packageInfoSourcePath, String saveTo) throws NotDirectoryException, IOException {
+=======
+    public Builder(String sourcePath, String packageInfoSourcePath, String saveTo) throws NotDirectoryException,IOException {
+>>>>>>> 7632e50e45e374f32c28725da15acd6d52cc8d03
         File sp = new File(sourcePath);
         File pisp = new File(packageInfoSourcePath);
         File st = new File(saveTo);
@@ -105,9 +109,15 @@ public class Builder {
             }
         }
         String json = JSON.toJSONString(map, true);
+<<<<<<< HEAD
         Files.write(FileSystems.getDefault().getPath(saveTo, "result.json"), json.getBytes());
         Files.write(FileSystems.getDefault().getPath(saveTo, "fields.json"), fields.toString().getBytes());
         Files.write(FileSystems.getDefault().getPath(saveTo, "packages.json"), JSON.toJSONString(packageDescriptions, true).getBytes());
+=======
+        Files.write(FileSystems.getDefault().getPath("H:\\", "result.json"), json.getBytes());
+        Files.write(FileSystems.getDefault().getPath("H:\\", "fields.json"), fields.toString().getBytes());
+        Files.write(FileSystems.getDefault().getPath("H:\\", "packages.json"),JSON.toJSONString(packageDescriptions, true).getBytes());
+>>>>>>> 7632e50e45e374f32c28725da15acd6d52cc8d03
         //System.out.println(json);
     }
 

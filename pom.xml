@@ -15,8 +15,13 @@
     <dependencies>
         <dependency>
             <groupId>com.github.javaparser</groupId>
+<<<<<<< HEAD
             <artifactId>javaparser-symbol-solver-core</artifactId>
             <version>3.5.14</version>
+=======
+            <artifactId>javaparser-core</artifactId>
+            <version>3.4.4</version>
+>>>>>>> 7632e50e45e374f32c28725da15acd6d52cc8d03
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>

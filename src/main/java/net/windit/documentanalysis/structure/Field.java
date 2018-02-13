@@ -33,7 +33,10 @@ public class Field {
     public String getType() {
         return type;
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7632e50e45e374f32c28725da15acd6d52cc8d03
     @Override
     public String toString() {
         return "name:" + name + ",description:" + description + ",type:" + type;
