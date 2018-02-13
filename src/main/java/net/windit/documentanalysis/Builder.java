@@ -65,7 +65,7 @@ public class Builder {
             String packageDescription = Tools.readFile(file); // TODO:暂无法用javaparser读取包注释
             packageDescriptions.put(packageName, packageDescription);
         }
-        HashMap<String, Map<String, String>> map = new HashMap<>();
+        HashMap<String, Map<String, Object>> map = new HashMap<>();
         StringBuilder fields = new StringBuilder();
         for (File file : files) {
             CompilationUnit cu = JavaParser.parse(file);
@@ -75,12 +75,13 @@ public class Builder {
             //System.out.println(types.get(0).getName());
             for (TypeDeclaration<?> type : types) {
                 ArrayList<String> list = new ArrayList<>();
-                HashMap<String, String> membercomments = new HashMap<>();
+                HashMap<String, Object> membercomments = new HashMap<>();
                 if (type.getJavadoc().isPresent()) {
                     //list.add(type.getJavadoc().get().getDescription().toText());
                     membercomments.put("ClassDescription", type.getJavadoc().get().getDescription().toText());
                 }
                 NodeList<BodyDeclaration<?>> members = type.getMembers();
+                HashMap<String, String> methods = new HashMap<>();
                 for (BodyDeclaration<?> member : members) {
                     if (member instanceof NodeWithJavadoc) {
                         NodeWithJavadoc javadoc = (NodeWithJavadoc) member;
@@ -88,7 +89,7 @@ public class Builder {
                             // TODO: 暂时只分析方法注释
                             if (member instanceof MethodDeclaration) {
                                 MethodDeclaration method = ((MethodDeclaration) member);
-                                membercomments.put(((MethodDeclaration) member).getNameAsString(), ((Javadoc) javadoc.getJavadoc().get()).getDescription().toText());
+                                methods.put(((MethodDeclaration) member).getNameAsString(), ((Javadoc) javadoc.getJavadoc().get()).getDescription().toText());
                             }
                             if (member.isFieldDeclaration()) {
                                 FieldDeclaration field = ((FieldDeclaration) member);
@@ -101,6 +102,7 @@ public class Builder {
                         //System.out.println(javadoc.getJavadoc());
                     }
                 }
+                membercomments.put("methods", methods);
                 map.put(type.getNameAsString(), membercomments);
             }
         }
